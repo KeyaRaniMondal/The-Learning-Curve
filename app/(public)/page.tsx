@@ -1,9 +1,9 @@
-import { CardSmall } from "./news/page";
+import LoginPage from "../(auth)/login/page";
 
 export default function HomePage() {
   return (
     <div>
-     <CardSmall/>
+     <LoginPage/>
     </div>
   );
 }
