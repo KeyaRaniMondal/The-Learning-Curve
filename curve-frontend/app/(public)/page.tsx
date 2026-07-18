@@ -1,9 +1,8 @@
-import LoginPage from "../(auth)/login/page";
 
 export default function HomePage() {
   return (
     <div>
-     <LoginPage/>
+     <h1>the learning curve</h1>
     </div>
   );
 }
