@@ -1,4 +1,5 @@
 'use client'
+
 import LoginForm from '../_components/loginForm';
 
 
@@ -17,7 +18,6 @@ const LoginPage = () => {
 
           {/* FORM */}
           <LoginForm/>
-
         </div>
       </div>
     );

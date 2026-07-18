@@ -1,4 +1,11 @@
-export const registerAction = async (formData: FormData) => {
+"use server"
+
+type registerState = {
+    success : boolean,
+    statusCode : number,
+    message : string
+}
+export const registerAction = async ( prevState: registerState,formData: FormData) => {
     const name = formData.get('name')
     const email = formData.get('email')
     const password = formData.get('password')
@@ -6,28 +13,63 @@ export const registerAction = async (formData: FormData) => {
     const payload = {
         name, email, password
     }
-    const res = await fetch(`${process.env.BACKEND_API_URL}/api/auth/register`, {
+    const res = await fetch(`${process.env.BACKEND_API_URL}/api/users/register`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(payload)
     })
-    return res
+    return res.json()
 }
 
-export const loginAction = async (formData: FormData) => {
-    const email = formData.get('email')
-    const password = formData.get('password')
-    const payload = {
-        email, password
-    }
-    const res = await fetch(`${process.env.BACKEND_API_URL}/api/auth/login}`, {
-        method: 'POSt',
+// export const loginAction = async (prevState:LoginState ,formData: FormData) => {
+//     const email = formData.get('email')
+//     const password = formData.get('password')
+//     const payload = {
+//         email, password
+//     }
+//     const res = await fetch(`${process.env.BACKEND_API_URL}/api/auth/login`, {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(payload)
+//     })
+//     return await res.json()
+// }
+
+type LoginState = {
+  success: boolean;
+  statusCode: number;
+  message: string;
+};
+
+export async function loginAction(
+  prevState: LoginState,
+  formData: FormData
+) {
+  try {
+    const res = await fetch(
+      `${process.env.BACKEND_API_URL}/api/auth/login`,
+      {
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload)
-    })
-    return res
+        body: JSON.stringify({
+          email: formData.get("email"),
+          password: formData.get("password"),
+        }),
+      }
+    );
+
+    return await res.json();
+  } catch {
+    return {
+      success: false,
+      statusCode: 500,
+      message: "Something went wrong",
+    };
+  }
 }
