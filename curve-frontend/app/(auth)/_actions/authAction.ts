@@ -1,6 +1,7 @@
 "use server"
 
 import { cookies } from "next/headers"
+import { redirect } from "next/navigation"
 
 type registerState = {
     success: boolean,
@@ -30,6 +31,10 @@ type LoginState = {
     success: boolean;
     statusCode: number;
     message: string;
+    data: {
+        accessToken: string,
+        refreshToken: string
+    }
 };
 
 export async function loginAction(
@@ -70,7 +75,12 @@ export async function loginAction(
                 maxAge: 60 * 60 * 24 * 7,
                 sameSite: "lax",
             })
-            return result
+            // if (result.success) {
+            //     redirect("/dashboard");
+            // }
+
+            return result;
+
         }
     } catch {
         return {
