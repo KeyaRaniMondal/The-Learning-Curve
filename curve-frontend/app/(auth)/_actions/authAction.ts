@@ -2,6 +2,7 @@
 
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
+import jwt,{JwtPayload } from "jsonwebtoken"
 
 type registerState = {
     success: boolean,
@@ -75,9 +76,19 @@ export async function loginAction(
                 maxAge: 60 * 60 * 24 * 7,
                 sameSite: "lax",
             })
+
+            const decodeToken=jwt.decode(result.data.accessToken)as JwtPayload
+            console.log(decodeToken)
             // if (result.success) {
             //     redirect("/dashboard");
             // }
+
+        //     if(decodeToken.role==='USER')
+        //         redirect('/dashboard')
+        //    else if(decodeToken.role==='ADMIN')
+        //         redirect('/adminDashboard')
+        //    else if(decodeToken.role==='AUTHOR')
+        //         redirect('/authorDashboard')
 
             return result;
 

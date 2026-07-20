@@ -67,7 +67,8 @@ export function Navbar() {
               aria-label="Open profile menu"
             >
               <Avatar className="h-9 w-9">
-                <AvatarImage src="/diverse-avatars.png" alt="User avatar" />
+                <AvatarImage src="" alt="User avatar" />
+                {/* ///diverse-avatars.png */}
                 <AvatarFallback>JD</AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
