@@ -24,7 +24,7 @@ const LoginForm = () => {
             console.log(state)
             toast.error(state.message || "Login failed");
         }
-    }, [state]);//[state, router])
+    },[state, router])
     return (
         <form action={action} className="space-y-4">
             <Card>
