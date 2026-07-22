@@ -1,27 +1,15 @@
-// import { cn } from "@/lib/utils";
-// import { Inter } from "next/font/google";
-import '../globals.css'
-import { Toaster } from "@/components/ui/sonner";
+import { Navbar } from "@/components/shared/navbar";
+import { getMe } from "@/service/getMe";
 
-// const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const AuthGroupLayout = async (
+    { children }: { children: React.ReactNode }) => {
 
-
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+         const user = await getMe();
+  return <div>
+    <Navbar user={user}/>
+    {children}
   
-  return (
-    <>
-      <body className="min-h-full flex flex-col">
+  </div>;
+};
 
-        <Toaster position="top-right" richColors />
-        {/* Navbar */}
-        {children}
-
-        {/* Footer */}
-      </body>
-    </>
-  );
-}
+export default AuthGroupLayout;
