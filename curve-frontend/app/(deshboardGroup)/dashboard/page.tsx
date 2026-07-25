@@ -1,6 +1,8 @@
- const dashboardPage=()=>{
-    <div>
-        this is dashboard page
-    </div>
+
+const UserDashboardPage = () => {
+  return (
+    <div>UserDashboardPage</div>
+  )
 }
-export default dashboardPage
+
+export default UserDashboardPage

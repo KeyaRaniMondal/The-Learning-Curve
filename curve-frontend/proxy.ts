@@ -15,7 +15,7 @@ export function proxy(request: NextRequest) {
 export const config = {
     matcher: [
         //matcher er route k protected korbe otherwise won't work for other routes
-        '/dashboard/:path*',
+        // '/dashboard/:path*',
         '/adminDashboard/:path*',
         '/authorDashboard/:path*',
 
